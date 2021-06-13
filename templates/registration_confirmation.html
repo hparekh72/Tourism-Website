@@ -1,0 +1,92 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Steps</title>
+<style>
+    .container{
+    box-shadow: 8px 4px 8px 4px rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 30%;
+    height: 410px;
+    margin-left: 500px;
+    margin-top: 150px;
+}
+.container:hover{
+    box-shadow: 16px 8px 16px 8px rgba(0,0,0,0.2);
+}
+.container {
+    padding: 2px 16px;
+}
+input[type=text] {
+    width: 80%;
+    padding: 12px 20px;
+    margin: 8px 43px;
+    box-sizing: border-box;
+    border: 2px solid green;
+    border-radius: 4px;
+}
+.btn{
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    margin: 8px 43px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    float: left;
+    width: 80%;
+}
+
+.btn:hover {
+    background-color: #3e8e41;
+}
+.text-center{
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 25px;
+}
+p{
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+}
+.f2 {
+    font-size: 18px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+
+img{
+    width: 80%;
+    margin-left: 45px;
+
+}
+.box {
+    border-style: solid;
+    border-color: green;
+    padding: 6px 10px;
+    margin-top: 70px;
+    border-radius: 10px;
+    font-size: 30px;
+    background-color: rgb(137, 175, 137);
+    }
+
+
+</style>
+</head>
+<body>
+<div class="container">
+<h3 class="text-center">Account verification sent</h3>
+
+<div class="box">
+<p class="f2">We’ve emailed you verification link , if an account exists with the email you entered. You should receive them shortly.</p>
+
+<p class="f2"> If you don’t receive an email, please make sure you’ve entered the address you registered with, and check your spam folder.</p>
+</div>
+</div>
+</body>
+</html>

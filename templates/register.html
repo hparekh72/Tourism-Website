@@ -1,0 +1,336 @@
+{% load static%}
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registeration</title>
+</head>
+<body>
+
+<h1>Register</h1><br><br>
+
+<form action="register" method="post">
+    {% csrf_token %}
+
+    <p> First Name: <input type="text" name="first_name"></p><br><br>
+    <p> Last Name: <input type="text" name="last_name"></p><br><br>
+    <p> UserName: <input type="text" name="username"></p><br><br>
+    <p> Password : <input type="password" name="password1"></p><br><br>
+    <p> Confirm Password: <input type="password" name="password2"></p><br><br>
+    <p> Email: <input type="email" name="email"></p><br><br>
+    <input type="submit" placeholder="Submit"><br>
+
+    <div>
+        {% for message in messages %}
+        <h3>{{message}}</h3>
+        {% endfor %}
+    </div>
+
+
+</form>
+</body>
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Register</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Travello template project">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/bootstrap4/bootstrap.min.css' %}">
+    <link href="{% static 'plugins/font-awesome-4.7.0/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.theme.default.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/animate.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/main_styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/responsive.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/bootstrap4/singup.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/bootstrap4/im.css'%}">
+
+</head>
+
+<body>
+
+    <div class="super_container">
+
+        <!-- Header -->
+
+        <header class="header">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="header_content d-flex flex-row align-items-center justify-content-start">
+                            <div class="header_content_inner d-flex flex-row align-items-end justify-content-start">
+                                <div class="logo"><a href="/">Tripology</a></div>
+                                <nav class="main_nav">
+                                    <ul class="d-flex flex-row align-items-start justify-content-start">
+                                        <li><a href="/">Home</a></li>
+                                        <li><a href="/about">About Us</a></li>
+                                        <li><a href="/services">Services</a></li>
+                                        <li><a href="/contact">Contact</a></li>
+                                        {% if user.is_authenticated %}
+                                        <li>
+                                            <h4>Hello, {{user.first_name}}</h4>
+                                        </li>
+                                        <li><a href="logout">Logout</a></li>
+                                        {% else %}
+                                        <li class="active"><a href="register">Register</a></li>
+                                        <li><a href="login">Login</a></li>
+                                        {% endif %}
+                                    </ul>
+                                </nav>
+
+                                <!-- Hamburger -->
+
+                                <div class="hamburger ml-auto">
+                                    <i class="fa fa-bars" aria-hidden="true"></i>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="header_social d-flex flex-row align-items-center justify-content-start">
+                <ul class="d-flex flex-row align-items-start justify-content-start">
+                    <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                </ul>
+            </div>
+        </header>
+
+        <!-- Menu -->
+
+        <div class="menu">
+            <div class="menu_header d-flex flex-row align-items-center justify-content-start">
+                <div class="menu_logo"><a href="/">Tripology</a></div>
+                <div class="menu_close_container ml-auto">
+                    <div class="menu_close">
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="menu_content">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about">About Us</a></li>
+                    <li><a href="/services">Services</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                    {% if user.is_authenticated %}
+                    <li><a href="logout">Logout</a></li>
+                    {% else %}
+                    <li><a href="register">Register</a></li>
+                    <li><a href="login">Login</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="menu_social">
+                <ul class="d-flex flex-row align-items-start justify-content-start">
+                    <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Home -->
+
+        <div class="home">
+
+            <!-- Home Slider -->
+            <div class="home_slider_container" style="height:500px">
+                <div class="owl-carousel owl-theme home_slider">
+
+                    <!-- Slide -->
+                    <div class="owl-item">
+                        <div class="background_image" style="background-image:url(/static/images/header11.jpg)"></div>
+                        <div class="home_slider_content_container">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="home_slider_content">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Search -->
+
+            <div class="home_search">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <div class="home_search_container">
+                                {% for message in messages %}
+                                <li>
+                                    <div class="alert alert-danger">{{message}}</div>
+                                </li>
+                                {% endfor %}
+
+
+                                <div class="home_search_title">Sing up our Website</div>
+                                <div class="home_search_content">
+                                    <form action="register" method="post" class="home_search_form"
+                                        id="home_search_form">
+                                        {% csrf_token %}
+                                        <h1>Sign Up</h1>
+                                        <p>Please fill in this form to create an account.</p>
+                                        <hr>
+
+                                        <label for="newsletter_input_name"><b>First Name</b></label>
+                                        <input type="text" class="clear" placeholder="Enter your firstname"
+                                            name="first_name" required>
+
+                                        <label for="newsletter_input_name"><b>Last Name</b></label>
+                                        <input type="text" class="clear" placeholder="Enter your lastname"
+                                            name="last_name" required>
+
+                                        <label for="newsletter_input_name">Username<b></b></label>
+                                        <input type="text" class="clear" placeholder="Enter your username"
+                                            name="username" required>
+
+                                        <label for="newsletter_input_email"><b>Email</b></label>
+                                        <input type="text" class="clear" placeholder="Enter your Email" name="email"
+                                            required>
+
+                                        <label for="pss"><b>Password</b></label>
+                                        <input type="password" class="clear" placeholder="Enter your Password"
+                                            name="password1" required>
+
+                                        <label for="psw-repeat"><b>Repeat Password</b></label>
+                                        <input type="password" class="clear" placeholder="Repeat Password"
+                                            name="password2" required>
+
+                                        <div class="clearfix">
+                                            <button type="reset" class="cancelbtn">Cancel</button>
+
+                                            <button type="submit" class="signupbtn">Sign Up</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <footer class="footer" style="margin-top:-335px">
+            <div class="parallax_background parallax-window" data-parallax="scroll"
+                data-image-src="/static/images/footer22.jpg" data-speed="0.8"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="newsletter">
+                            <div class="newsletter_title_container text-center">
+                                <div class="newsletter_title">Subscribe to our newsletter to get the latest trends &
+                                    news</div>
+                                <div class="newsletter_subtitle">Join our database NOW!</div>
+                            </div>
+                            <div class="newsletter_form_container">
+                                <form action="#"
+                                    class="newsletter_form d-flex flex-md-row flex-column align-items-start justify-content-between"
+                                    id="newsletter_form">
+                                    <div
+                                        class="d-flex flex-md-row flex-column align-items-start justify-content-between">
+                                        <div><input type="text" class="newsletter_input newsletter_input_name"
+                                                id="newsletter_input_name" placeholder="Name" required="required">
+                                            <div class="input_border"></div>
+                                        </div>
+                                        <div><input type="email" class="newsletter_input newsletter_input_email"
+                                                id="newsletter_input_email" placeholder="Your e-mail"
+                                                required="required">
+                                            <div class="input_border"></div>
+                                        </div>
+                                    </div>
+                                    <div><button class="newsletter_button">subscribe</button></div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row footer_contact_row" style="margin-top:35%">
+                    <div class="col-xl-10 offset-xl-1">
+                        <div class="row">
+
+                            <!-- Footer Contact Item -->
+                            <div class="col-xl-4 footer_contact_col">
+                                <div
+                                    class="footer_contact_item d-flex flex-column align-items-center justify-content-start text-center">
+                                    <div class="footer_contact_icon"><img src="{% static 'images/sign.svg'%}" alt="">
+                                    </div>
+                                    <div class="footer_contact_title">give us a call</div>
+                                    <div class="footer_contact_list">
+                                        <ul>
+                                            <li>Mobile: +91 8779853265</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Footer Contact Item -->
+                            <div class="col-xl-4 footer_contact_col">
+                                <div
+                                    class="footer_contact_item d-flex flex-column align-items-center justify-content-start text-center">
+                                    <div class="footer_contact_icon"><img src="{% static 'images/trekking.svg'%}"
+                                            alt=""></div>
+                                    <div class="footer_contact_title">come & drop by</div>
+                                    <div class="footer_contact_list">
+                                        <ul style="max-width:190px">
+                                            <li>Mumbai, Borivali (West)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Footer Contact Item -->
+                            <div class="col-xl-4 footer_contact_col">
+                                <div
+                                    class="footer_contact_item d-flex flex-column align-items-center justify-content-start text-center">
+                                    <div class="footer_contact_icon"><img src="{% static 'images/around.svg'%}" alt="">
+                                    </div>
+                                    <div class="footer_contact_title">send us a message</div>
+                                    <div class="footer_contact_list">
+                                        <ul>
+                                            <li>hitanshuparekh72@gmail.com</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+
+        <script src="{% static '/static/vendor/jquery/jquery.min.js '%} "></script>
+        <script src="{% static '/static/js/main.js"></script '%}"></script>
+        <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+        <script src="{% static 'styles/bootstrap4/popper.js' %}"></script>
+        <script src="{% static 'styles/bootstrap4/bootstrap.min.js' %}"></script>
+        <script src="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.js' %}"></script>
+        <script src="{% static 'plugins/Isotope/isotope.pkgd.min.js' %}"></script>
+        <script src="{% static 'plugins/scrollTo/jquery.scrollTo.min.js' %}"></script>
+        <script src="{% static 'plugins/easing/easing.js' %}"></script>
+        <script src="{% static 'plugins/parallax-js-master/parallax.min.js' %}"></script>
+        <script src="{% static 'js/custom.js' %}"></script>
+    </div>
+</body>
+
+</html>

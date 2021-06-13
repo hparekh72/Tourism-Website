@@ -1,0 +1,282 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="/static/styles/receiptSytles.css">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <title>Receipt</title>
+</head>
+
+<body>
+
+
+<form action="confirm_booking" method="post">
+    {% csrf_token %}
+
+
+    <table class="body-wrap">
+        <tbody>
+        <tr>
+            <td class="container" width="600">
+
+                <div id="content2" style="background: #fff;border-bottom: 1px solid #ffffff;">
+                    <table class="main" width="100%" cellpadding="0" cellspacing="0">
+                        <tbody>
+                        <tr>
+                            <td class="content-wrap aligncenter">
+                                <table width="100%" cellpadding="0" cellspacing="0">
+                                    <tbody>
+                                    <tr>
+                                        <td class="content-block">
+                                            <h2>Thanks for using our website</h2>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="content-block">
+                                            <table class="invoice">
+                                                <tbody>
+                                                <tr>
+                                                    <td>Tripology<br>
+                                                        Date: {{date}}<br>
+                                                        Time: {{currentTime}}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <table class="invoice-items"
+                                                               cellpadding="0" cellspacing="0">
+                                                            <br>
+                                                            <tbody>
+                                                            <tr style="line-height: 2.0">
+                                                                <td>Name:
+                                                                </td>
+                                                                <td class="alignright">
+                                                                    <input type="text"
+                                                                           value="{{request.session.fname}} {{request.session.lname}}"
+                                                                           readonly
+                                                                           name="fullName"
+                                                                           style="border: none; direction:rtl; width: 200px;">
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr style="line-height: 2.0">
+
+                                                                <td>From:</td>
+                                                                <td class="alignright">
+                                                                    <input type="text"
+                                                                           value="{{request.session.from_city}}"
+                                                                           readonly
+                                                                           name="fromCity"
+                                                                           style="border: none; direction:rtl; width: 200px ">
+                                                                </td>
+                                                            </tr>
+                                                            <tr style="line-height: 2.0">
+                                                                <td>To:</td>
+                                                                <td class="alignright">
+                                                                    <input type="text"
+                                                                           value="{{request.session.to_city}}"
+                                                                           readonly
+                                                                           name="toCity"
+                                                                           style="border: none; direction:rtl; width: 200px">
+                                                                </td>
+                                                            </tr>
+                                                            <tr style="line-height: 2.0">
+                                                                <td>Depature Date:</td>
+                                                                <td class="alignright">
+                                                                    <input type="text"
+                                                                           value="{{request.session.depature_date}}"
+                                                                           readonly
+                                                                           name="depatureDate"
+                                                                           style="border: none; direction:rtl ">
+                                                                </td>
+                                                            </tr>
+                                                            <tr style="line-height: 2.0">
+                                                                <td>Days:</td>
+                                                                <td class="alignright">
+                                                                    <input type="text"
+                                                                           value="{{request.session.day}}"
+                                                                           readonly name="days"
+                                                                           style="border: none; direction:rtl ">
+                                                                </td>
+                                                            </tr>
+                                                            <tr style="line-height: 2.0">
+                                                                <td><b>Passengers Details:</b>
+                                                                </td>
+                                                            </tr>
+                                                            <tr style="line-height: 2.0">
+                                                                <td>Number of Rooms:</td>
+
+                                                                <td class="alignright">
+                                                                    <input type="text"
+                                                                           value="{{request.session.no_of_rooms}}"
+                                                                           readonly
+                                                                           name="noOfRooms"
+                                                                           style="border: none; direction:rtl ">
+                                                                </td>
+
+                                                            </tr>
+                                                            <tr style="line-height: 2.0">
+                                                                <td>Number of Adults:</td>
+
+                                                                <td class="alignright">
+                                                                    <input type="text"
+                                                                           value="{{request.session.no_of_adults}}"
+                                                                           readonly
+                                                                           name="noOfAdults"
+                                                                           style="border: none; direction:rtl ">
+                                                                </td>
+
+                                                            </tr>
+                                                            <tr style="line-height: 2.0">
+                                                                <td>Number of Children:</td>
+                                                                <td class="alignright">
+                                                                    <input type="text"
+                                                                           value="{{request.session.no_of_children}}"
+                                                                           readonly
+                                                                           name="noOfChildren"
+                                                                           style="border: none; direction:rtl ">
+                                                                </td>
+                                                            </tr>
+                                                            <tr style="line-height: 2.0">
+                                                                <td>Email:</td>
+
+                                                                <td class="alignright">
+                                                                    <input type="text"
+                                                                           value="{{request.session.email}}"
+                                                                           readonly
+                                                                           name="email"
+                                                                           style="border: none; direction:rtl; width: 275px; ">
+                                                                </td>
+
+                                                            </tr>
+                                                            <tr style="line-height: 2.0">
+                                                                <td>Phone No:</td>
+                                                                <td class="alignright">
+                                                                    <input type="text"
+                                                                           value="{{request.session.phone_no}}"
+                                                                           readonly
+                                                                           name="phoneNo"
+                                                                           style="border: none; direction:rtl ">
+                                                                </td>
+                                                            </tr>
+                                                            <tr style="line-height: 2.0">
+                                                                <td>Amount Per Person:</td>
+                                                                <td class="alignright">
+                                                                    <input type="text"
+                                                                           value="{{request.session.price}}"
+                                                                           readonly
+                                                                           name="amountPerPerson"
+                                                                           style="border: none; direction:rtl ">
+                                                                </td>
+                                                            </tr>
+                                                            <tr style="line-height: 2.0">
+                                                                <td><strong>Total Amount:</strong>
+                                                                </td>
+                                                                {% if confirmation %}
+                                                                <td class="alignright">
+                                                                    <input type="text"
+                                                                           value="{{request.session.price}}"
+                                                                           readonly
+                                                                           name="totalAmount"
+                                                                           style="border: none; direction:rtl ">
+                                                                </td>
+                                                                {% else %}
+                                                                <td class="alignright">
+                                                                    <input type="text"
+                                                                           value="{{totalCost}}"
+                                                                           readonly
+                                                                           name="totalAmount"
+                                                                           style="border: none; direction:rtl ">
+                                                                </td>
+                                                                {% endif %}
+                                                            </tr>
+
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                    </tr>
+
+
+                                    <tr>
+                                        <td class="content-block">
+                                            Tripology, Mumbai, Borivali(West)
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="editor"></div>
+                <div class="footer">
+                    <table width="100%">
+                        <tbody>
+                        <tr>
+                            <td class="aligncenter content-block">Questions? Email <a
+                                    href="mailto:">hitanshuparekh72@gmail.com</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="d-flex justify-content-center">
+                        <button id="cmd2" class="btn btn-success btn-lg">Confirm
+                            Booking
+                        </button>
+                    </div>
+                </div>
+
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <script>
+            $('#cmd2').click(function () {
+                var options = {
+                    'width': 550,
+                };
+                var pdf = new jsPDF('p', 'pt', 'a4');
+                pdf.addHTML($("#content2"), -1, 0, options, function () {
+                    pdf.save('TripologyReceipt.pdf');
+                });
+            });
+            {% if confirmation %}
+            alert("This is a success check it out!")
+
+           {% endif %}
+
+    </script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+            crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>

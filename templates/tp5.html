@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js" />
+    <link rel="stylesheet" href="/static/styles/bookingFormStyle.css" />
+    <title>Post Property</title>
+</head>
+
+<body>
+    <form action="enquire" method="post">
+        {% csrf_token %}
+        {% for message in messages %}
+        <li>
+            <div class="alert alert-danger">{{message}}</div>
+        </li>
+        {% endfor %}
+        <div id="booking" class="section">
+            <div class="section-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="booking-form">
+                            <div class="form-header">
+                                <h1>Contact Seller</h1>
+                            </div>
+                            <p class="h4 mx-3 my-3" style="color: fff;">Personal Details:</p>
+                            <form>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <input class="form-control" type="text" placeholder="Full Name"
+                                                name="fullName" />
+                                            <span class="form-label">FullName</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <input class="form-control" type="tel" placeholder="Enter you Phone"
+                                                name="phoneNo" />
+                                            <span class="form-label">Phone</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <input class="form-control" type="email" placeholder="Enter your Email"
+                                                name="email" />
+                                            <span class="form-label">Email</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <form>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <input class="form-control" type="hidden" 
+                                                    name="cityId" />
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <input class="form-control" type="hidden" 
+                                                    name="flatId" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                <div class="form-btn">
+                                    <button class="submit-btn">Enquire Now</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</body>
+
+</html>

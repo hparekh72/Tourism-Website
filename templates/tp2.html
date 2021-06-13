@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+
+    <style>
+        @import url("https://fonts.googleapis.com/css?family=Roboto");
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            font-family: "Roboto", sans-serif;
+        }
+
+        .wrapper {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: -webkit-linear-gradient(315deg, #e1e1e1 0%, white 50%, #e1e1e1 100%);
+            background: linear-gradient(135deg, #e1e1e1 0%, white 50%, #e1e1e1 100%);
+        }
+
+        .login-modal {
+            padding: 10px 20px;
+            background: #375375;
+            background: -webkit-gradient(left top, left bottom, color-stop(0%, #375375), color-stop(100%, #22354a));
+            background: -webkit-linear-gradient(top, #375375 0%, #22354a 100%);
+            background: linear-gradient(to bottom, #375375 0%, #22354a 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#375375', endColorstr='#22354a', GradientType=0);
+            border-radius: 5px;
+            color: #fff;
+            text-transform: uppercase;
+            font-size: 13px;
+            transition: all .2s ease;
+        }
+
+        .login-modal:hover,
+        .login-modal:active,
+        .login-modal:focus {
+            color: #fff;
+            outline: none;
+            transition: all .2s ease;
+        }
+
+        .white-popup-block {
+            background: #FFF;
+            text-align: left;
+            max-width: 450px;
+            margin: 40px auto;
+            position: relative;
+            -webkit-box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.25);
+            -moz-box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.25);
+            box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.25);
+        }
+
+        .mfp-close {
+            display: none !important;
+        }
+
+        .mfp-preloader {
+            width: 30px !important;
+            height: 30px !important;
+            background-color: #FFF !important;
+            opacity: 0.65 !important;
+            margin: 0 auto !important;
+            -webkit-animation: rotateplane 1.2s infinite ease-in-out !important;
+            animation: rotateplane 1.2s infinite ease-in-out !important;
+        }
+
+        @-webkit-keyframes rotateplane {
+            0% {
+                -webkit-transform: perspective(120px);
+            }
+
+            50% {
+                -webkit-transform: perspective(120px) rotateY(180deg);
+            }
+
+            100% {
+                -webkit-transform: perspective(120px) rotateY(180deg) rotateX(180deg);
+            }
+        }
+
+        @keyframes rotateplane {
+            0% {
+                transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+            }
+
+            50% {
+                transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+            }
+
+            100% {
+                transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+            }
+        }
+
+        .close_modal {
+            float: right;
+            position: relative;
+            top: 15px;
+            right: 15px;
+            display: block;
+            width: 20px;
+            height: 20px;
+        }
+
+        .close_modal:active {
+            top: 16px;
+        }
+
+        .close_modal::before,
+        .close_modal::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 3px;
+            background: #fff;
+            top: 9px;
+        }
+
+        .close_modal::before {
+            transform: rotate(45deg);
+        }
+
+        .close_modal::after {
+            transform: rotate(-45deg);
+        }
+
+        .mfp-wrap~* {
+            filter: blur(5px);
+            transition: filter .2s ease
+        }
+
+        .login_bg {
+            background: url(https://i.imgur.com/Yy0sAY3.jpg);
+            -webkit-background-size: cover;
+            background-size: cover;
+            width: 100%;
+            height: 200px;
+            position: relative;
+        }
+
+        .login_bg img {
+            position: relative;
+            width: 222px;
+            margin: -25px auto 0;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.7);
+            display: block;
+            border-radius: 3px;
+        }
+
+        .login_wrap,
+        .password_wrap {
+            position: relative;
+        }
+
+        .tooltip {
+            position: absolute;
+            top: 0;
+            display: block;
+            background: #fff;
+            padding: 12px;
+            border-radius: 5px 0 0 5px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all .2s ease;
+            font-size: 12px;
+        }
+
+        .tooltip.l {
+            left: -114px;
+        }
+
+        .tooltip.p {
+            left: -100px;
+        }
+
+        .tooltip span {
+            color: #ff0000;
+            font-weight: bold;
+        }
+
+        #log-in:focus~.tooltip,
+        #pas-word:focus~.tooltip {
+            opacity: 1;
+            visibility: visible;
+            transition: all .2s ease;
+        }
+
+        .login_form-input {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px 5px;
+            border: 1px solid #4d4d4d;
+            outline: none;
+            color: #4d4d4d;
+        }
+
+        .login_form-input:focus {
+            border-color: #375375;
+            color: #375375;
+        }
+
+        .login_form-input::-webkit-input-placeholder {
+            color: #4d4d4d;
+            transition: opacity .2s ease;
+        }
+
+        .login_form-input::-moz-placeholder {
+            color: #4d4d4d;
+            transition: opacity .2s ease;
+        }
+
+        .login_form-input:-moz-placeholder {
+            color: #4d4d4d;
+            transition: opacity .2s ease;
+        }
+
+        .login_form-input:-ms-input-placeholder {
+            color: #4d4d4d;
+            transition: opacity .2s ease;
+        }
+
+
+        .login_form-input:focus::-webkit-input-placeholder {
+            opacity: 0.5;
+            color: #375375;
+            transition: opacity .2s ease;
+        }
+
+        .login_form-input:focus::-moz-placeholder {
+            opacity: 0.5;
+            color: #375375;
+            transition: opacity .2s ease;
+        }
+
+        .login_form-input:focus:-moz-placeholder {
+            opacity: 0.5;
+            color: #375375;
+            transition: opacity .2s ease;
+        }
+
+        .login_form-input:focus:-ms-input-placeholder {
+            opacity: 0.5;
+            color: #375375;
+            transition: opacity .2s ease;
+        }
+
+        .login_text {
+            position: absolute;
+            bottom: 10px;
+            left: 15px;
+            text-transform: uppercase;
+            color: #fff;
+            text-shadow: 0px 0px 5px rgba(150, 150, 150, 1);
+            display: block;
+            background: rgba(55, 83, 117, 0.8);
+            padding: 7px 8px;
+        }
+
+        .login_text::before {
+            content: '';
+            display: inline-block;
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: #fff;
+        }
+
+        #login_form {
+            padding: 25px 0;
+        }
+
+        .submit_login_btn {
+            margin-top: 10px;
+            height: 95px;
+            width: 100%;
+            background: #375375;
+            background: -moz-linear-gradient(top, #375375 0%, #22354a 100%);
+            background: -webkit-gradient(left top, left bottom, color-stop(0%, #375375), color-stop(100%, #22354a));
+            background: -webkit-linear-gradient(top, #375375 0%, #22354a 100%);
+            background: -o-linear-gradient(top, #375375 0%, #22354a 100%);
+            background: -ms-linear-gradient(top, #375375 0%, #22354a 100%);
+            background: linear-gradient(to bottom, #375375 0%, #22354a 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#375375', endColorstr='#22354a', GradientType=0);
+            border: 1px solid #375375;
+            color: #fff;
+            text-transform: uppercase;
+            outline: none;
+            transition: background .2s ease, color .3s ease-in;
+        }
+
+        .submit_login_btn:hover {
+            background: #375375;
+            color: #fff;
+            transition: background .2s ease, color .3s ease-in;
+            border-color: #375375;
+        }
+
+        .m__pad__r {
+            padding-right: 0px !important;
+        }
+
+        .lost_password {
+            font-size: 13px;
+            color: #375375 !important;
+            float: right;
+            margin-top: 10px;
+        }
+
+        .lost_password:hover {
+            color: #4d4d4d !important;
+        }
+
+        .register_text {
+            font-size: 13px;
+            color: #1D1D1D !important;
+            float: left;
+            margin-top: 10px;
+        }
+
+        .register_link {
+            color: #375375 !important;
+        }
+
+        .register_link:hover {
+            color: #4d4d4d !important;
+        }
+
+        #white-popup-block {
+            transition: all .2s ease;
+        }
+
+
+        /**
+         * Fade-zoom animation for first dialog
+         */
+
+        .my-mfp-zoom-in .zoom-anim-dialog {
+            opacity: 0;
+
+            -webkit-transition: all 0.2s ease-in-out;
+            -moz-transition: all 0.2s ease-in-out;
+            -o-transition: all 0.2s ease-in-out;
+            transition: all 0.2s ease-in-out;
+            -webkit-transform: scale(0.8);
+            -moz-transform: scale(0.8);
+            -ms-transform: scale(0.8);
+            -o-transform: scale(0.8);
+            transform: scale(0.8);
+        }
+
+        .my-mfp-zoom-in.mfp-ready .zoom-anim-dialog {
+            opacity: 1;
+
+            -webkit-transform: scale(1);
+            -moz-transform: scale(1);
+            -ms-transform: scale(1);
+            -o-transform: scale(1);
+            transform: scale(1);
+        }
+
+        .my-mfp-zoom-in.mfp-removing .zoom-anim-dialog {
+            -webkit-transform: scale(0.8);
+            -moz-transform: scale(0.8);
+            -ms-transform: scale(0.8);
+            -o-transform: scale(0.8);
+            transform: scale(0.8);
+
+            opacity: 0;
+        }
+
+        .my-mfp-zoom-in.mfp-bg {
+            opacity: 0;
+            -webkit-transition: opacity 0.3s ease-out;
+            -moz-transition: opacity 0.3s ease-out;
+            -o-transition: opacity 0.3s ease-out;
+            transition: opacity 0.3s ease-out;
+        }
+
+        .my-mfp-zoom-in.mfp-ready.mfp-bg {
+            opacity: 0.8;
+        }
+
+        .my-mfp-zoom-in.mfp-removing.mfp-bg {
+            opacity: 0;
+        }
+
+
+
+        /**
+         * Fade-move animation for second dialog
+         */
+
+        .my-mfp-slide-bottom .zoom-anim-dialog {
+            opacity: 0;
+            -webkit-transition: all 0.2s ease-out;
+            -moz-transition: all 0.2s ease-out;
+            -o-transition: all 0.2s ease-out;
+            transition: all 0.2s ease-out;
+
+            -webkit-transform: translateY(-20px) perspective(600px) rotateX(10deg);
+            -moz-transform: translateY(-20px) perspective(600px) rotateX(10deg);
+            -ms-transform: translateY(-20px) perspective(600px) rotateX(10deg);
+            -o-transform: translateY(-20px) perspective(600px) rotateX(10deg);
+            transform: translateY(-20px) perspective(600px) rotateX(10deg);
+
+        }
+
+        .my-mfp-slide-bottom.mfp-ready .zoom-anim-dialog {
+            opacity: 1;
+            -webkit-transform: translateY(0) perspective(600px) rotateX(0);
+            -moz-transform: translateY(0) perspective(600px) rotateX(0);
+            -ms-transform: translateY(0) perspective(600px) rotateX(0);
+            -o-transform: translateY(0) perspective(600px) rotateX(0);
+            transform: translateY(0) perspective(600px) rotateX(0);
+        }
+
+        .my-mfp-slide-bottom.mfp-removing .zoom-anim-dialog {
+            opacity: 0;
+
+            -webkit-transform: translateY(-10px) perspective(600px) rotateX(10deg);
+            -moz-transform: translateY(-10px) perspective(600px) rotateX(10deg);
+            -ms-transform: translateY(-10px) perspective(600px) rotateX(10deg);
+            -o-transform: translateY(-10px) perspective(600px) rotateX(10deg);
+            transform: translateY(-10px) perspective(600px) rotateX(10deg);
+        }
+
+        /* Dark overlay, start state */
+        .my-mfp-slide-bottom.mfp-bg {
+            opacity: 0;
+
+            -webkit-transition: opacity 0.3s ease-out;
+            -moz-transition: opacity 0.3s ease-out;
+            -o-transition: opacity 0.3s ease-out;
+            transition: opacity 0.3s ease-out;
+        }
+
+        .my-mfp-slide-bottom.mfp-ready.mfp-bg {
+            opacity: 0.8;
+        }
+
+        .my-mfp-slide-bottom.mfp-removing.mfp-bg {
+            opacity: 0;
+        }
+
+        @media only screen and (max-width: 768px) {
+            .m__pad__r {
+                padding-right: 15px !important;
+            }
+
+            .submit_login_btn {
+                height: auto;
+                padding: 10px 0;
+            }
+
+            .lost_password {
+                float: left;
+            }
+
+            #log-in:focus~.tooltip,
+            #pas-word:focus~.tooltip {
+                visibility: visible;
+                opacity: 1;
+            }
+
+            .tooltip.l,
+            .tooltip.p {
+                padding: 0;
+                background: transparent;
+                left: auto;
+                top: auto;
+                right: 10px;
+                top: 50%;
+                margin-top: -7px;
+            }
+        }
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script>
+        $(function () {
+            $('.login-modal').magnificPopup({
+                type: 'inline',
+                preloader: true,
+                tLoading: '',
+                focus: '#log-in',
+                midClick: true,
+                removalDelay: 100,
+                callbacks: {
+                    beforeOpen: function () {
+                        if ($(window).width() < 700) {
+                            this.st.focus = false;
+                        } else {
+                            this.st.focus = '#log-in';
+                        }
+                    }
+                },
+                mainClass: 'my-mfp-zoom-in'
+            });
+            $(document).on('click', '.login-modal-close', function (e) {
+                e.preventDefault();
+                $.magnificPopup.close();
+            });
+        });
+    </script>
+
+
+</head>
+
+<body>
+    <div id="login-modal" class="white-popup-block mfp-hide clearfix">
+        <div class="login_bg clearfix">
+            <a class="login-modal-close close_modal" href="#" title="Close"></a>
+            <img src="https://i.imgur.com/xf2pG8J.png" alt="">
+
+        </div>
+        <form action="" id="login_form" class="clearfix">
+            <div class="col-sm-9 m__pad__r">
+                <div class="login_wrap">
+                    <input id="log-in" type="text" class="login_form-input" placeholder="Name">
+                    <span class="tooltip l"><span>*</span> Name</span>
+                </div>
+                <div class="login_wrap">
+                    <input id="xyz" type="text" class="login_form-input" placeholder="Phone No">
+                    <span class="tooltip l"><span>*</span> Phone No</span>
+                </div>
+                <div class="login_wrap">
+                    <input id="abc" type="text" class="login_form-input" placeholder="Email">
+                    <span class="tooltip l"><span>*</span>Email</span>
+                </div>
+
+            </div>
+            <div class="col-sm-3">
+                <button class="submit_login_btn" type="submit">Contact Seller</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="wrapper">
+        <a class="login-modal" href="#login-modal">Contact Seller</a>
+    </div>
+
+</body>
+
+</html>

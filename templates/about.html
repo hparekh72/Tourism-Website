@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+{%load static %}
+<html lang="en">
+
+<head>
+	<title>About Us</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="Travello template project">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/bootstrap4/bootstrap.min.css'%}">
+	<link href="{% static 'plugins/font-awesome-4.7.0/css/font-awesome.min.css'%}" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.theme.default.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/animate.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/about.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/about_responsive.css'%}">
+</head>
+
+<body>
+
+	<div class="super_container">
+
+		<!-- Header -->
+
+		<header class="header">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<div class="header_content d-flex flex-row align-items-center justify-content-start">
+							<div class="header_content_inner d-flex flex-row align-items-end justify-content-start">
+								<div class="logo"><a href="/">Tripology</a></div>
+								<nav class="main_nav">
+									<ul class="d-flex flex-row align-items-start justify-content-start">
+										<li><a href="/">Home</a></li>
+										<li class="active"><a href="about">About Us</a></li>
+										<li><a href="services">Services</a></li>
+										<li><a href="contact">Contact</a></li>
+										{% if user.is_authenticated %}
+										<li>
+											<h4>Hello, {{user.first_name}}</h4>
+										</li>
+										<li><a href="accounts/logout">Logout</a></li>
+										{% else %}
+										<li><a href="accounts/register">Register</a></li>
+										<li><a href="accounts/login">Login</a></li>
+										{% endif %}
+									</ul>
+								</nav>
+
+								<!-- Hamburger -->
+
+								<div class="hamburger ml-auto">
+									<i class="fa fa-bars" aria-hidden="true"></i>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="header_social d-flex flex-row align-items-center justify-content-start">
+				<ul class="d-flex flex-row align-items-start justify-content-start">
+					<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+					<li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+				</ul>
+			</div>
+		</header>
+
+        <!-- Menu -->
+
+        <div class="menu">
+            <div class="menu_header d-flex flex-row align-items-center justify-content-start">
+                <div class="menu_logo"><a href="/">Tripology</a></div>
+                <div class="menu_close_container ml-auto">
+                    <div class="menu_close">
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="menu_content">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="about">About Us</a></li>
+                    <li><a href="destinations">Services</a></li>
+                    <li><a href="services">Contact</a></li>
+                    {% if user.is_authenticated %}
+                    <li><a href="accounts/logout">Logout</a></li>
+                    {% else %}
+                    <li><a href="accounts/register">Register</a></li>
+                    <li><a href="accounts/login">Login</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="menu_social">
+                <ul class="d-flex flex-row align-items-start justify-content-start">
+                    <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                </ul>
+            </div>
+        </div>
+
+		<!-- Home -->
+
+		<div class="home">
+			<div class="background_image" style="background-image:url(static/images/about.jpg)"></div>
+		</div>
+
+		<!-- Search -->
+
+		<div class="home_search">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<div class="home_search_container">
+							<div class="home_search_title">Search for your trip</div>
+							<div class="home_search_content">
+								<form action="#" class="home_search_form" id="home_search_form">
+									<div
+										class="d-flex flex-lg-row flex-column align-items-start justify-content-lg-between justify-content-start">
+										<input type="text" class="search_input search_input_1" placeholder="City"
+											required="required">
+										<input type="text" class="search_input search_input_2" placeholder="Departure"
+											required="required">
+										<input type="text" class="search_input search_input_3" placeholder="Arrival"
+											required="required">
+										<input type="text" class="search_input search_input_4" placeholder="Budget"
+											required="required">
+										<button class="home_search_button">search</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- About -->
+
+		<div class="about">
+			<div class="container">
+				<div class="row">
+					<div class="col text-center">
+						<div class="section_subtitle">simply amazing places</div>
+						<div class="section_title">
+							<h2>A few words about us</h2>
+						</div>
+					</div>
+				</div>
+				<div class="row about_row">
+					<div class="col-lg-6">
+						<div class="about_content">
+							<div class="text_highlight">Travello offers advanced web-based travel management software to ensure hassle-free
+								travel business with user-customizable features.
+							</div>
+							<div class="about_text">
+								<p>An all-inclusive framework for Travel Management. It is based on latest features. This is very flexible and user-friendly. 
+									Simple to customize according to the needs of customers. Also, have efficient customer management, with full descriptions of customer queries.
+									This is a sophisticated system of reporting with automatic billing and receipts.
+								</p>
+							</div>
+							<div class="button about_button"><a href="#">read more</a></div>
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="about_image"><img src="{% static 'images/about_1.jpg'%}" alt="no img"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Milestones -->
+
+		<!-- <div class="milestones">
+		<div class="container">
+			<div class="row">
+				
+				
+				<div class="col-lg-3 milestone_col">
+					<div class="milestone text-center">
+						<div class="milestone_icon"><img src="{% static 'images/mountain.svg'%}" alt="utfy"></div>
+						<div class="milestone_counter" data-end-value="17">0</div>
+						<div class="milestone_text">Online Courses</div>
+					</div>
+				</div>
+
+				
+				<div class="col-lg-3 milestone_col">
+					<div class="milestone text-center">
+						<div class="milestone_icon"><img src="{% static 'images/island.svg'%}" alt="tdyt"></div>
+						<div class="milestone_counter" data-end-value="213">0</div>
+						<div class="milestone_text">Students</div>
+					</div>
+				</div>
+
+				
+				<div class="col-lg-3 milestone_col">
+					<div class="milestone text-center">
+						<div class="milestone_icon"><img src="{% static 'images/camera.svg'%}" alt="gzfg"></div>
+						<div class="milestone_counter" data-end-value="11923">0</div>
+						<div class="milestone_text">Teachers</div>
+					</div>
+				</div>
+
+			
+				<div class="col-lg-3 milestone_col">
+					<div class="milestone text-center">
+						<div class="milestone_icon"><img src="{% static 'images/boat.svg'%}" alt="tdyfuy"></div>
+						<div class="milestone_counter" data-end-value="15">0</div>
+						<div class="milestone_text">Countries</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div> -->
+
+		<!-- Why Choose Us -->
+
+		<div class="why">
+			<div class="parallax_background parallax-window" data-parallax="scroll"
+				data-image-src="{% static 'images/why.jpg'%}" data-speed="0.8"></div>
+			<div class="container">
+				<div class="row">
+					<div class="col text-center">
+						<div class="section_subtitle">simply amazing places</div>
+						<div class="section_title">
+							<h2>Why choose us?</h2>
+						</div>
+					</div>
+				</div>
+				<div class="row why_row">
+
+					<!-- Why item -->
+					<div class="col-lg-4 why_col">
+						<div class="why_item">
+							<div class="why_image">
+								<img src="{% static 'images/why_1.jpg'%}" alt="hlo">
+								<div class="why_icon d-flex flex-column align-items-center justify-content-center">
+									<img src="{% static 'images/why_1.svg'%}" alt="hai">
+								</div>
+							</div>
+							<div class="why_content text-center">
+								<div class="why_title">Fast Services</div>
+								<div class="why_text">
+									<p>Provide a high standard of services suitable for individuals seeking relaxing, 
+										comfortable and memorable experiences in the hospitality and tourism industry.
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Why item -->
+					<div class="col-lg-4 why_col">
+						<div class="why_item">
+							<div class="why_image">
+								<img src="{% static 'images/why_2.jpg'%}" alt="">
+								<div class="why_icon d-flex flex-column align-items-center justify-content-center">
+									<img src="{% static 'images/why_2.svg'%}" alt="">
+								</div>
+							</div>
+							<div class="why_content text-center">
+								<div class="why_title">Great Team</div>
+								<div class="why_text">
+									<p>Our team produces expeditions and memories that would satisfy each and every single customer. Also, participate in 
+										 community service by providing general lectures, consultation, and training programs.
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Why item -->
+					<div class="col-lg-4 why_col">
+						<div class="why_item">
+							<div class="why_image">
+								<img src="{%static 'images/why_3.jpg'%}" alt="">
+								<div class="why_icon d-flex flex-column align-items-center justify-content-center">
+									<img src="{% static 'images/why_3.svg'%}" alt="fuck">
+								</div>
+							</div>
+							<div class="why_content text-center">
+								<div class="why_title">Best Deals</div>
+								<div class="why_text">
+									<p>Provides the best deal and also have the best tips like when is the best time to travel, 
+										what days are cheaper to book flights, and how to get you free amenities.
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<!-- Team -->
+
+		<div class="team">
+			<div class="container">
+				<div class="row">
+					<div class="col text-center">
+						<div class="section_subtitle">simply amazing places</div>
+						<div class="section_title">
+							<h2>Meet the Team</h2>
+						</div>
+					</div>
+				</div>
+				<div class="row team_row">
+
+					<!-- Team Item -->
+					<div class="col-xl-3 col-md-6 team_col">
+						<div class="team_item d-flex flex-column align-items-center justify-content-start text-center">
+							<div class="team_image"><img src="{% static 'images/team_1.jpg'%}" alt=""></div>
+							<div class="team_content">
+								<div class="team_title"><a href="#">Nidhi Hariya</a></div>
+								<div class="team_text">
+									<p>Student at SFIT.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Team Item -->
+					<div class="col-xl-3 col-md-6 team_col">
+						<div class="team_item d-flex flex-column align-items-center justify-content-start text-center">
+							<div class="team_image"><img src="{% static 'images/team_2.jpg'%}" alt=""></div>
+							<div class="team_content">
+								<div class="team_title"><a href="#">Arya Doshi</a></div>
+								<div class="team_text">
+									<p>Student at SFIT.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Team Item -->
+					<div class="col-xl-3 col-md-6 team_col">
+						<div class="team_item d-flex flex-column align-items-center justify-content-start text-center">
+							<div class="team_image"><img src="{% static 'images/team_3.jpg'%}" alt=""></div>
+							<div class="team_content">
+								<div class="team_title"><a href="#">Hitanshu Parekh</a></div>
+								<div class="team_text">
+									<p>Student at SFIT.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Team Item -->
+					<div class="col-xl-3 col-md-6 team_col">
+						<div class="team_item d-flex flex-column align-items-center justify-content-start text-center">
+							<div class="team_image"><img src="{% static 'images/team_4.jpg'%}" alt=""></div>
+							<div class="team_content">
+								<div class="team_title"><a href="#">Yash Jethwa</a></div>
+								<div class="team_text">
+									<p>Student at SFIT.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<!-- Footer -->
+
+		<footer class="footer">
+			<div class="parallax_background parallax-window" data-parallax="scroll"
+				data-image-src="{% static 'images/footer_1.jpg'%}" data-speed="0.8"></div>
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<div class="newsletter">
+							<div class="newsletter_title_container text-center">
+								<div class="newsletter_title">Subscribe to our newsletter to get the latest trends &
+									news</div>
+								<div class="newsletter_subtitle">Join our database NOW!</div>
+							</div>
+							<div class="newsletter_form_container">
+								<form action="#"
+									class="newsletter_form d-flex flex-md-row flex-column align-items-start justify-content-between"
+									id="newsletter_form">
+									<div
+										class="d-flex flex-md-row flex-column align-items-start justify-content-between">
+										<div><input type="text" class="newsletter_input newsletter_input_name"
+												id="newsletter_input_name" placeholder="Name" required="required">
+											<div class="input_border"></div>
+										</div>
+										<div><input type="email" class="newsletter_input newsletter_input_email"
+												id="newsletter_input_email" placeholder="Your e-mail"
+												required="required">
+											<div class="input_border"></div>
+										</div>
+									</div>
+									<div><button class="newsletter_button">subscribe</button></div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row footer_contact_row">
+					<div class="col-xl-10 offset-xl-1">
+						<div class="row">
+
+							<!-- Footer Contact Item -->
+							<div class="col-xl-4 footer_contact_col">
+								<div
+									class="footer_contact_item d-flex flex-column align-items-center justify-content-start text-center">
+									<div class="footer_contact_icon"><img src="{% static 'images/sign.svg'%}" alt="">
+									</div>
+									<div class="footer_contact_title">give us a call</div>
+									<div class="footer_contact_list">
+										<ul>
+											<li>Mobile: +91 8779853265</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+
+							<!-- Footer Contact Item -->
+							<div class="col-xl-4 footer_contact_col">
+								<div
+									class="footer_contact_item d-flex flex-column align-items-center justify-content-start text-center">
+									<div class="footer_contact_icon"><img src="{% static 'images/trekking.svg'%}"
+											alt=""></div>
+									<div class="footer_contact_title">come & drop by</div>
+									<div class="footer_contact_list">
+										<ul style="max-width:190px">
+											<li>Mumbai, Borivali (West)</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+
+							<!-- Footer Contact Item -->
+							<div class="col-xl-4 footer_contact_col">
+								<div
+									class="footer_contact_item d-flex flex-column align-items-center justify-content-start text-center">
+									<div class="footer_contact_icon"><img src="{% static 'images/around.svg'%}" alt="">
+									</div>
+									<div class="footer_contact_title">send us a message</div>
+									<div class="footer_contact_list">
+										<ul>
+											<li>hitanshuparekh72@gmail.com</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</footer>
+	</div>
+
+	<script src="{% static 'js/jquery-3.2.1.min.js'%}"></script>
+	<script src="{% static 'styles/bootstrap4/popper.js'%}"></script>
+	<script src="{% static 'styles/bootstrap4/bootstrap.min.js'%}"></script>
+	<script src="{% static 'plugins/greensock/TweenMax.min.js'%}"></script>
+	<script src="{% static 'plugins/greensock/TimelineMax.min.js'%}"></script>
+	<script src="{% static 'plugins/scrollmagic/ScrollMagic.min.js'%}"></script>
+	<script src="{% static 'plugins/greensock/animation.gsap.min.js'%}"></script>
+	<script src="{% static 'plugins/greensock/ScrollToPlugin.min.js'%}"></script>
+	<script src="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.js'%}"></script>
+	<script src="{% static 'plugins/easing/easing.js'%}"></script>
+	<script src="{% static 'plugins/parallax-js-master/parallax.min.js'%}"></script>
+	<script src="{% static 'js/about.js'%}"></script>
+</body>
+
+</html>

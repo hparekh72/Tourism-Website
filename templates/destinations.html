@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+
+<head>
+    <title>Services</title>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="Travello template project" name="description">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link href="{%static 'styles/bootstrap4/bootstrap.min.css'%}" rel="stylesheet" type="text/css">
+    <link href="{%static 'plugins/font-awesome-4.7.0/css/font-awesome.min.css'%}" rel="stylesheet" type="text/css">
+    <link href="{%static 'plugins/OwlCarousel2-2.2.1/owl.carousel.css'%}" rel="stylesheet" type="text/css">
+    <link href="{%static 'plugins/OwlCarousel2-2.2.1/owl.theme.default.css'%}" rel="stylesheet" type="text/css">
+    <link href="{%static 'plugins/OwlCarousel2-2.2.1/animate.css'%}" rel="stylesheet" type="text/css">
+    <link href="{%static 'styles/destinations.css'%}" rel="stylesheet" type="text/css">
+    <link href="{%static 'styles/destinations_responsive.css'%}" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+<div class="super_container">
+
+    <!-- Header -->
+
+    <header class="header">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="header_content d-flex flex-row align-items-center justify-content-start">
+                        <div class="header_content_inner d-flex flex-row align-items-end justify-content-start">
+                            <div class="logo"><a href="/">Tripology</a></div>
+                            <nav class="main_nav">
+                                <ul class="d-flex flex-row align-items-start justify-content-start">
+                                    <li><a href="/">Home</a></li>
+                                    <li><a href="about">About Us</a></li>
+                                    <li class="active"><a href="services">Services</a></li>
+                                    <li><a href="contact">Contact</a></li>
+                                    {% if user.is_authenticated %}
+                                    <li>
+                                        <h4>Hello, {{user.first_name}}</h4>
+                                    </li>
+                                    <li><a href="accounts/logout">Logout</a></li>
+                                    {% else %}
+                                    <li><a href="accounts/register">Register</a></li>
+                                    <li><a href="accounts/login">Login</a></li>
+                                    {% endif %}
+                                </ul>
+                            </nav>
+
+                            <!-- Hamburger -->
+
+                            <div class="hamburger ml-auto">
+                                <i aria-hidden="true" class="fa fa-bars"></i>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header_social d-flex flex-row align-items-center justify-content-start">
+            <ul class="d-flex flex-row align-items-start justify-content-start">
+                <li><a href="#"><i aria-hidden="true" class="fa fa-facebook"></i></a></li>
+                <li><a href="#"><i aria-hidden="true" class="fa fa-linkedin"></i></a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Menu -->
+
+    <div class="menu">
+        <div class="menu_header d-flex flex-row align-items-center justify-content-start">
+            <div class="menu_logo"><a href="/">Tripology</a></div>
+            <div class="menu_close_container ml-auto">
+                <div class="menu_close">
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+        </div>
+        <div class="menu_content">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="about">About Us</a></li>
+                <li><a href="services">Services</a></li>
+                <li><a href="contact">Contact</a></li>
+                {% if user.is_authenticated %}
+                <li><a href="accounts/logout">Logout</a></li>
+                {% else %}
+                <li><a href="accounts/register">Register</a></li>
+                <li><a href="accounts/login">Login</a></li>
+                {% endif %}
+            </ul>
+        </div>
+        <div class="menu_social">
+            <ul class="d-flex flex-row align-items-start justify-content-start">
+                <li><a href="#"><i aria-hidden="true" class="fa fa-facebook"></i></a></li>
+                <li><a href="#"><i aria-hidden="true" class="fa fa-twitter"></i></a></li>
+                <li><a href="#"><i aria-hidden="true" class="fa fa-linkedin"></i></a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Home -->
+
+    <div class="home">
+        <div class="background_image" style="background-image:url(static/images/destinations.jpg)"></div>
+    </div>
+
+    <!-- Search -->
+
+    <div class="home_search">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="home_search_container">
+                        <div class="home_search_title">Search for your trip</div>
+                        <div class="home_search_content">
+                            <form action="/search" class="home_search_form" id="home_search_form" method="get">
+                                <div
+                                        class="d-flex flex-lg-row flex-column align-items-start justify-content-lg-between justify-content-start">
+                                    <input class="search_input search_input_1" placeholder="City" type="text"
+                                           name="query" id="query">
+                                    <input class="search_input search_input_2" placeholder="Departure" type="date">
+                                    <input class="search_input search_input_3" placeholder="Arrival" type="date">
+                                    <input class="search_input search_input_1" placeholder="Budget" type="text">
+<!--                                    <select name="budget" value="Budget" class="search_input search_input_4">-->
+<!--                                        <option value="" disabled selected hidden>Budget</option>-->
+<!--                                        <option class="dropdown-item" value="50000">Less than Rs. 50000</option>-->
+<!--                                        <option class="dropdown-item" value="100000">Less than Rs. 100000</option>-->
+<!--                                        <option class="dropdown-item" value="200000">Less than Rs. 200000</option>-->
+<!--                                        <option class="dropdown-item" value="300000">Less than Rs. 300000</option>-->
+<!--                                        <option class="dropdown-item" value="300001">Greater than Rs. 300000</option>-->
+<!--                                    </select>-->
+                                    <button type="submit" class="home_search_button">search</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Destinations -->
+
+    <div class="destinations" id="destinations">
+        <div class="container">
+            <div class="row">
+                <div class="col text-center">
+                    <div class="section_subtitle">simply amazing places</div>
+                    <div class="section_title">
+                        <h2>Popular Destinations</h2>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row destination_sorting_row">
+                <div class="col">
+                    <div class="destination_sorting d-flex flex-row align-items-start justify-content-start">
+                        <div class="sorting">
+                            <ul class="item_sorting">
+                                <li>
+                                    <span class="sorting_text">Sort By</span>
+                                    <i aria-hidden="true" class="fa fa-chevron-down"></i>
+                                    <ul>
+                                        <li class="product_sorting_btn"
+                                            data-isotope-option='{ "sortBy": "original-order" }'><span>Show
+                                                    All</span></li>
+                                        <li class="product_sorting_btn" data-isotope-option='{ "sortBy": "price" }'>
+                                            <span>Price</span>
+                                        </li>
+                                        <li class="product_sorting_btn"
+                                            onclick="sortList()">
+                                            <span>Name</span>
+                                        </li>
+                                    </ul>
+                                </li>
+<!--                                <form action="sortBy" method="get">-->
+<!--                                    <select  class="sorting_text" name="sortBy">-->
+<!--                                        <option disabled selected hidden>Sort By</option>-->
+<!--                                        <option type="submit" class="dropdown-item" value="price">Price</option>-->
+<!--                                        <button type="submit">Hii</button>>-->
+<!--                                        <option class="dropdown-item" value="name">Name</option>-->
+<!--                                    </select>-->
+<!--                                </form>-->
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div  class="row destinations_row">
+                <div class="col">
+                    <div  class="destinations_container item_grid">
+
+                        {% for des in dests %}
+
+                        <!-- Destination -->
+                        <div id="id01" class="destination item">
+                            <div class="destination_image">
+                                <a href="destination_details/{{des.id}}"><img src="{{des.img1.url}}" alt=""></a>
+                                {% if des.offer %}
+                                <div class="spec_offer text-center"><a href="destination_details/{{des.id}}">Special
+                                    Offer</a></div>
+                                {% endif %}
+                            </div>
+                            <div class="destination_content">
+                                <div class="destination_title"><a href="destination_details/{{des.id}}">{{des.name}}
+                                    <h5>{{des.days}}D/{{des.days|add:"-1"}}N</h5>
+                                </a></div>
+                                <div class="destination_subtitle">
+                                    <a href="destination_details/{{des.id}}">
+                                        {% if des.desc|length > 95 %}
+                                        <p>{{des.desc|slice:95}}...</p>
+                                        {% else %}
+                                        <p>{{des.desc}}</p>
+                                        {% endif %}
+                                    </a>
+                                </div>
+                                <a href="destination_details/{{des.id}}">
+                                    <div class="destination_price">Rs. {{des.price}}</div>
+                                </a>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="row load_more_row">
+                <div class="col">
+                    <div class="button load_more_button"><a href="#">load more</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+
+    <footer class="footer">
+        <div class="parallax_background parallax-window" data-image-src="{%static 'images/footer_1.jpg'%}"
+             data-parallax="scroll" data-speed="0.8"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="newsletter">
+                        <div class="newsletter_title_container text-center">
+                            <div class="newsletter_title">Subscribe to our newsletter to get the latest trends &
+                                news
+                            </div>
+                            <div class="newsletter_subtitle">Join our database NOW!</div>
+                        </div>
+                        <div class="newsletter_form_container">
+                            <form action="#"
+                                  class="newsletter_form d-flex flex-md-row flex-column align-items-start justify-content-between"
+                                  id="newsletter_form">
+                                <div
+                                        class="d-flex flex-md-row flex-column align-items-start justify-content-between">
+                                    <div><input class="newsletter_input newsletter_input_name"
+                                                id="newsletter_input_name" placeholder="Name" required="required"
+                                                type="text">
+                                        <div class="input_border"></div>
+                                    </div>
+                                    <div><input class="newsletter_input newsletter_input_email"
+                                                id="newsletter_input_email" placeholder="Your e-mail"
+                                                required="required" type="email">
+                                        <div class="input_border"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <button class="newsletter_button">subscribe</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row footer_contact_row">
+                <div class="col-xl-10 offset-xl-1">
+                    <div class="row">
+
+                        <!-- Footer Contact Item -->
+                        <div class="col-xl-4 footer_contact_col">
+                            <div
+                                    class="footer_contact_item d-flex flex-column align-items-center justify-content-start text-center">
+                                <div class="footer_contact_icon"><img alt="" src="{% static 'images/sign.svg'%}">
+                                </div>
+                                <div class="footer_contact_title">give us a call</div>
+                                <div class="footer_contact_list">
+                                    <ul>
+                                        <li>Mobile: +91 8779853265</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Footer Contact Item -->
+                        <div class="col-xl-4 footer_contact_col">
+                            <div
+                                    class="footer_contact_item d-flex flex-column align-items-center justify-content-start text-center">
+                                <div class="footer_contact_icon"><img alt=""
+                                                                      src="{% static 'images/trekking.svg'%}"></div>
+                                <div class="footer_contact_title">come & drop by</div>
+                                <div class="footer_contact_list">
+                                    <ul style="max-width:190px">
+                                        <li>Mumbai, Borivali (West)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Footer Contact Item -->
+                        <div class="col-xl-4 footer_contact_col">
+                            <div
+                                    class="footer_contact_item d-flex flex-column align-items-center justify-content-start text-center">
+                                <div class="footer_contact_icon"><img alt="" src="{% static 'images/around.svg'%}">
+                                </div>
+                                <div class="footer_contact_title">send us a message</div>
+                                <div class="footer_contact_list">
+                                    <ul>
+                                        <li>hitanshuparekh72@gmail.com</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<script>
+function sortList() {
+  var list, i, switching, b, shouldSwitch;
+  list = document.getElementById("id01");
+  switching = true;
+  /* Make a loop that will continue until
+  no switching has been done: */
+  while (switching) {
+    // start by saying: no switching is done:
+    switching = false;
+    b = list.getElementsByTagName("LI");
+    // Loop through all list-items:
+    for (i = 0; i < (b.length - 1); i++) {
+      // start by saying there should be no switching:
+      shouldSwitch = false;
+      /* check if the next item should
+      switch place with the current item: */
+      if (b[i].innerHTML.toLowerCase() > b[i + 1].innerHTML.toLowerCase()) {
+        /* if next item is alphabetically
+        lower than current item, mark as a switch
+        and break the loop: */
+        shouldSwitch = true;
+        break;
+      }
+    }
+    if (shouldSwitch) {
+      /* If a switch has been marked, make the switch
+      and mark the switch as done: */
+      b[i].parentNode.insertBefore(b[i + 1], b[i]);
+      switching = true;
+    }
+  }
+}
+
+</script>
+
+<script src="{%static 'js/jquery-3.2.1.min.js'%}"></script>
+<script src="{%static 'styles/bootstrap4/popper.js'%}"></script>
+<script src="{%static 'styles/bootstrap4/bootstrap.min.js'%}"></script>
+<script src="{%static 'plugins/OwlCarousel2-2.2.1/owl.carousel.js'%}"></script>
+<script src="{%static 'plugins/easing/easing.js'%}"></script>
+<script src="{%static 'plugins/Isotope/isotope.pkgd.min.js'%}"></script>
+<script src="{%static 'plugins/parallax-js-master/parallax.min.js'%}"></script>
+<script src="{%static 'js/destinations.js'%}"></script>
+</body>
+
+</html>

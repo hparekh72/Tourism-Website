@@ -1,0 +1,157 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js" />
+  <link rel="stylesheet" href="/static/styles/bookingFormStyle.css" />
+  <title>Post Property</title>
+</head>
+
+<body>
+  <form action="" method="post">
+    {% csrf_token %}
+    {% for message in messages %}
+    <li>
+      <div class="alert alert-danger">{{message}}</div>
+    </li>
+    {% endfor %}
+    <div id="booking" class="section">
+      <div class="section-center">
+        <div class="container">
+          <div class="row">
+            <div class="booking-form">
+              <div class="form-header">
+                <h1>Post Property</h1>
+              </div>
+              <form>
+                <div class="row">
+        
+                  <div class="col-sm-12">
+                    <div class="form-group">
+                      <p class="h4 mx-4 my-3" style="color: fff;">Personal Details:</p>
+                      <input class="form-control" type="text" placeholder="Full Name" name="fullName" />
+                      <span class="form-label">FullName</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <input class="form-control" type="email" placeholder="Enter your Email" name="email" />
+                      <span class="form-label">Email</span>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <input class="form-control" type="tel" placeholder="Enter you Phone" name="phoneNo" />
+                      <span class="form-label">Phone</span>
+                    </div>
+                  </div>
+                </div>
+               
+                  <div class="row mb-4">
+                    <p class="h4 mx-4 my-3" style="color: fff;">Property Details:</p>
+                    <div class="col-sm-12">
+                      <textarea name="addres" class="form-control" rows="15" cols="90" style=" resize: none;">Your Address</textarea>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <select name="city">
+                          <option value="volvo" disabled selected hidden>City</option>
+                          {% for i in city %}
+                          <option value="city">Hiii</option>
+                          {% endfor%}
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+
+             
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <input class="form-control" type="text" placeholder="Number Of BHK" name="bhk" />
+                        <span class="form-label">Bhk</span>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <input class="form-control" type="text" placeholder="Age of Building" name="years" />
+                        <span class="form-label">year</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <input class="form-control" type="text" placeholder="Square Feet" name="squarerFeet" />
+                        <span class="form-label"></span>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <input class="form-control" type="text" placeholder="Property Amount in Rs" name="rate" />
+                        <span class="form-label"></span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col col-md-6">
+                      <div class="form-group">
+                        <input class="form-control" type="text" placeholder="City" name="city" />
+                        <span class="form-label">city</span>
+                      </div>
+                    </div>
+                    <div class="col col-md-6">
+                      <div class="form-check my-1" style="color: fff;">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                          Rent
+                        </label>
+                      </div>
+                      <div class="form-check my-1" style="color: fff;">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                        <label class="form-check-label" for="flexRadioDefault2">
+                          Sell
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <p class="h5 mx-4 my-3" style="color: fff;">Property Image:</p>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group my-3">
+                        <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-btn">
+                    <button class="submit-btn">Post Property</button>
+                  </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</body>
+
+</html>

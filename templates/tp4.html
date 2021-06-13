@@ -1,0 +1,101 @@
+{% load static %}
+{% static 'images' as baseUrl %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>details</title>
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <p class="h1 my-5 mx-4">Property's</p>
+
+
+    {% for i in Property %}
+    <div class="row mb-2 mx-5 my-3">
+        <div class="col-md-12">
+            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+
+
+                <div class="col-auto d-none d-lg-block">
+                    <img src="{{i.img.url}}" alt="" width="300" height="500">
+                </div>
+
+
+                <div class="col p-4 d-flex flex-column position-static">
+                    <!-- <h3 class="mb-0">Featured post</h3>
+              <div class="mb-1 text-muted">Nov 12</div> -->
+                    <div class="row">
+
+                        <div class="col col-xs-8">
+                            <h5>Property Details:</h5>
+                            <div class="row">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <p>Address:</p>
+                                    </div>
+                                    <div class="col-6">
+                                        <p>{{i.address}}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col col-xs-4">
+                                        <p>Square Feet:</p>
+                                        <p>Number of BHK:</p>
+                                        <p>Establishment year:</p>
+                                        <p>Property Amount:</p>
+                                    </div>
+                                    <div class="col col-xs-8">
+
+                                        <p>{{i.sqr_ft}}</p>
+                                        <p>{{i.bhk}}</p>
+                                        <p>{{i.est_year}}</p>
+                                        <p>{{i.rate}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col col-xs-4">
+                            <div class="row">
+                                <h5>Owner Details:</h5>
+                                <div class="col col-xs-6">
+                                    <p>Name: </p>
+                                    <p>Email: </p>
+                                    <p>Phone: </p>
+                                </div>
+                                <div class="col col-xs-6">
+                                    <p>{{i.owner_fullname}}</p>
+                                    <p>{{i.owner_email}}</p>
+                                    <p>{{i.owner_contact}}</p>
+                                </div>
+                            </div>
+                            {% if i.rent %}
+                            <button type="button" class="btn btn-primary" disabled>On Rent</button>
+                            {% if i.sell %}
+                            <span class="badge badge-primary">On Sell</span>
+                            
+                        </div>
+                        <a href="details/{{i.id}}" class="btn btn-primary my-4" role="button"
+                            aria-pressed="true">Contact Seller</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    {% endfor%}
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

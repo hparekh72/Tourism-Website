@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+
+<head>
+    <title>Contact Us</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Travello template project">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{%static 'styles/bootstrap4/bootstrap.min.css'%}">
+    <link href="{%static 'plugins/font-awesome-4.7.0/css/font-awesome.min.css'%}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="{%static 'plugins/OwlCarousel2-2.2.1/owl.carousel.css'%}">
+    <link rel="stylesheet" type="text/css" href="{%static 'plugins/OwlCarousel2-2.2.1/owl.theme.default.css'%}">
+    <link rel="stylesheet" type="text/css" href="{%static 'plugins/OwlCarousel2-2.2.1/animate.css'%}">
+    <link rel="stylesheet" type="text/css" href="{%static 'styles/contact.css'%}">
+    <link rel="stylesheet" type="text/css" href="{%static 'styles/contact_responsive.css'%}">
+</head>
+
+<body>
+
+<div class="super_container">
+
+    <!-- Header -->
+
+    <header class="header">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="header_content d-flex flex-row align-items-center justify-content-start">
+                        <div class="header_content_inner d-flex flex-row align-items-end justify-content-start">
+                            <div class="logo"><a href="/">Tripology</a></div>
+                            <nav class="main_nav">
+                                <ul class="d-flex flex-row align-items-start justify-content-start">
+                                    <li><a href="/">Home</a></li>
+                                    <li><a href="about">About Us</a></li>
+                                    <li><a href="services">Services</a></li>
+                                    <li class="active"><a href="contact">Contact</a></li>
+                                    {% if user.is_authenticated %}
+                                    <li>
+                                        <h4>Hello, {{user.first_name}}</h4>
+                                    </li>
+                                    <li><a href="accounts/logout">Logout</a></li>
+                                    {% else %}
+                                    <li><a href="accounts/register">Register</a></li>
+                                    <li><a href="accounts/login">Login</a></li>
+                                    {% endif %}
+                                </ul>
+                            </nav>
+
+                            <!-- Hamburger -->
+
+                            <div class="hamburger ml-auto">
+                                <i class="fa fa-bars" aria-hidden="true"></i>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header_social d-flex flex-row align-items-center justify-content-start">
+            <ul class="d-flex flex-row align-items-start justify-content-start">
+                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Menu -->
+
+    <div class="menu">
+        <div class="menu_header d-flex flex-row align-items-center justify-content-start">
+            <div class="menu_logo"><a href="/">Tripology</a></div>
+            <div class="menu_close_container ml-auto">
+                <div class="menu_close">
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+        </div>
+        <div class="menu_content">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="about">About Us</a></li>
+                <li><a href="services">Services</a></li>
+                <li><a href="contact">Contact</a></li>
+                {% if user.is_authenticated %}
+                <li><a href="accounts/logout">Logout</a></li>
+                {% else %}
+                <li><a href="accounts/register">Register</a></li>
+                <li><a href="accounts/login">Login</a></li>
+                {% endif %}
+            </ul>
+        </div>
+        <div class="menu_social">
+            <ul class="d-flex flex-row align-items-start justify-content-start">
+                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- Home -->
+
+    <div class="home">
+        <div class="background_image" style="background-image:url(static/images/contact.jpg)"></div>
+    </div>
+
+    <!-- Search -->
+
+    <div class="home_search">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="home_search_container">
+                        <div class="home_search_title">Search for your trip</div>
+                        <div class="home_search_content">
+                            <form action="#" class="home_search_form" id="home_search_form">
+                                <div
+                                        class="d-flex flex-lg-row flex-column align-items-start justify-content-lg-between justify-content-start">
+                                    <input type="text" class="search_input search_input_1" placeholder="City"
+                                           required="required">
+                                    <input type="text" class="search_input search_input_2" placeholder="Departure"
+                                           required="required">
+                                    <input type="text" class="search_input search_input_3" placeholder="Arrival"
+                                           required="required">
+                                    <input type="text" class="search_input search_input_4" placeholder="Budget"
+                                           required="required">
+                                    <button class="home_search_button">search</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact -->
+
+    <div class="contact">
+        <div class="container">
+            <div class="row">
+
+                <!-- Get in touch -->
+                <div class="col-lg-6">
+                    <div class="contact_content">
+                        <div class="contact_title">Get in touch with us</div>
+                        <div class="contact_text">
+                            <p> For any queries contact us at the provided E-mail and Phone number and we will
+                                definitely solve your queries.
+                            </p>
+                        </div>
+                        <div class="contact_list">
+                            <ul>
+                                <li>
+                                    <div>address:</div>
+                                    <div>Mumbai, Borivali (West)</div>
+                                </li>
+                                <li>
+                                    <div>phone:</div>
+                                    <div>+91 8779853265</div>
+                                </li>
+                                <li>
+                                    <div>email:</div>
+                                    <div>hitanshuparekh72@gmail.com</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="col-lg-6">
+                    <div class="contact_form_container">
+                        <form action="contact" id="contact_form" class="contact_form" method="POST">
+                            {% csrf_token %}
+                            {% for message in messages %}
+                            <li>
+                                <div class="alert alert-danger">{{message}}</div>
+                            </li>
+                            {% endfor %}
+                            <div style="margin-bottom: 18px"><input type="text"
+                                                                    class="contact_input contact_input_name input"
+                                                                    placeholder="Your Name"
+                                                                    required="required" name="yourName">
+                                <div class="input_border"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6" style="margin-bottom: 18px">
+                                    <div><input type="text" class="contact_input contact_input_email input"
+                                                placeholder="Your E-mail" required="required" name="email">
+                                        <div class="input_border"></div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6" style="margin-bottom: 18px">
+<!--                                    <div><input type="text" class="contact_input contact_input_subject input"-->
+<!--                                                placeholder="Subject" required="required" name="subject">-->
+<!--                                        <div class="input_border"></div>-->
+                                        <select name="subject" required="required" class="contact_input contact_input_subject input ">
+                                            <option value="" disabled selected hidden>Subject</option>
+                                            <option value="testimonial">Add Testimonial</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div><textarea class="contact_textarea contact_input input" placeholder="Message"
+                                           required="required" name="message"></textarea>
+                                <div class="input_border" style="bottom:3px"></div>
+                            </div>
+                            <button class="contact_button">Send</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Map -->
+
+    <p>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2563.0144093777803!2d72.84449976008669!3d19.24098480826067!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b121801c9a19%3A0x682b61fb9c52ddd6!2sJai%20Devki%20Co-Op%20Hsg.%20Soc.%2C%20Eksar%20Village%2C%20Yogi%20Nagar%2C%20Borivali%20West%2C%20Mumbai%2C%20Maharashtra%20400092!5e0!3m2!1sen!2sin!4v1620558662392!5m2!1sen!2sin"
+                width="1350" height="600" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </p>
+
+    <!-- Footer -->
+
+    <footer class="footer">
+        <div class="parallax_background parallax-window" data-parallax="scroll"
+             data-image-src="{%static 'images/footer_1.jpg'%}" data-speed="0.8"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="newsletter">
+                        <div class="newsletter_title_container text-center">
+                            <div class="newsletter_title">Subscribe to our newsletter to get the latest trends &
+                                news
+                            </div>
+                            <div class="newsletter_subtitle">Join our database NOW!</div>
+                        </div>
+                        <div class="newsletter_form_container">
+                            <form action="#"
+                                  class="newsletter_form d-flex flex-md-row flex-column align-items-start justify-content-between"
+                                  id="newsletter_form">
+                                <div
+                                        class="d-flex flex-md-row flex-column align-items-start justify-content-between">
+                                    <div><input type="text" class="newsletter_input newsletter_input_name input"
+                                                id="newsletter_input_name" placeholder="Name" required="required">
+                                        <div class="input_border"></div>
+                                    </div>
+                                    <div><input type="email" class="newsletter_input newsletter_input_email input"
+                                                id="newsletter_input_email" placeholder="Your e-mail"
+                                                required="required">
+                                        <div class="input_border"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <button class="newsletter_button">subscribe</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row footer_contact_row">
+                <div class="col-xl-10 offset-xl-1">
+                    <div class="row">
+
+                        <!-- Footer Contact Item -->
+                        <div class="col-xl-4 footer_contact_col">
+                            <div
+                                    class="footer_contact_item d-flex flex-column align-items-center justify-content-start text-center">
+                                <div class="footer_contact_icon"><img src="{%static 'images/sign.svg'%}" alt="">
+                                </div>
+                                <div class="footer_contact_title">give us a call</div>
+                                <div class="footer_contact_list">
+                                    <ul>
+                                        <li>Mobile: +91 8779853265</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Footer Contact Item -->
+                        <div class="col-xl-4 footer_contact_col">
+                            <div
+                                    class="footer_contact_item d-flex flex-column align-items-center justify-content-start text-center">
+                                <div class="footer_contact_icon"><img src="{%static 'images/trekking.svg'%}" alt="">
+                                </div>
+                                <div class="footer_contact_title">come & drop by</div>
+                                <div class="footer_contact_list">
+                                    <ul style="max-width:190px">
+                                        <li>Mumbai, Borivali (West)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Footer Contact Item -->
+                        <div class="col-xl-4 footer_contact_col">
+                            <div
+                                    class="footer_contact_item d-flex flex-column align-items-center justify-content-start text-center">
+                                <div class="footer_contact_icon"><img src="{%static 'images/around.svg'%}" alt="">
+                                </div>
+                                <div class="footer_contact_title">send us a message</div>
+                                <div class="footer_contact_list">
+                                    <ul>
+                                        <li>
+                                        <li>hitanshuparekh72@gmail.com</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<script src="{%static 'js/jquery-3.2.1.min.js'%}"></script>
+<script src="{%static 'styles/bootstrap4/popper.js'%}"></script>
+<script src="{%static 'styles/bootstrap4/bootstrap.min.js'%}"></script>
+<script src="{%static 'plugins/OwlCarousel2-2.2.1/owl.carousel.js'%}"></script>
+<script src="{%static 'plugins/easing/easing.js'%}"></script>
+<script src="{%static 'plugins/parallax-js-master/parallax.min.js'%}"></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCIwF204lFZg1y4kPSIhKaHEXMLYxxuMhA"></script>
+<script src="{%static 'js/contact.js'%}"></script>
+</body>
+
+</html>
