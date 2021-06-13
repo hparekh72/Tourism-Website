@@ -54,5 +54,5 @@ Step 1: Enabling less secure apps to access Gmail
 Step 2:
 In settings.py file of telusko folder
 
-    EMAIL_HOST_USER = 'Your Email over here'
-    EMAIL_HOST_PASSWORD = 'Your Password over here '
+    EMAIL_HOST_USER = 'Enter Your Email over here'
+    EMAIL_HOST_PASSWORD = 'Enter Your Password over here '
