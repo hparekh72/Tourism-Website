@@ -25,7 +25,7 @@ SECRET_KEY = 'hp65ku5f@h(&1r*vkx7*oc3_kx1&6my73xpg3ec)3hly04l^ux'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['tripology.herokuapp.com']
 
 
 # Application definition
