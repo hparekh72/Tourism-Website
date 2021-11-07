@@ -18,10 +18,10 @@ def index(request):
 
     dests = Destination.objects.all()
     destsWithOffer = Destination.objects.filter(offer=True)
-    print(destsWithOffer)
+    # print(destsWithOffer)
     testimonials = Contact.objects.filter(subject = "testimonial")
-    print(testimonials)
-    print(testimonials.count())
+    # print(testimonials)
+    # print(testimonials.count())
     return render(request, 'index.html', {'dests': dests, 'testimonials':testimonials, 'testimonialCount':testimonials.count(), 'destsWithOffer': destsWithOffer.count()})
 
 
@@ -67,9 +67,9 @@ def destination_details(request,id):
     request.session['name'] = dest.name
     request.session['price'] = dest.price
     request.session['day'] = dest.days
-    print(request.session['name'])
-    print(request.session['price'])
-    print("Days = ", request.session['day'])
+    # print(request.session['name'])
+    # print(request.session['price'])
+    # print("Days = ", request.session['day'])
 
     return render(request,'destination_details.html',{'dest':dest})
 
@@ -77,8 +77,8 @@ def destination_details(request,id):
 def booking(request, id):
     destinationName = request.session['name']
     destinationPrice = request.session['price']
-    print(destinationName)
-    print(destinationPrice)
+    # print(destinationName)
+    # print(destinationPrice)
 
     if request.method == 'POST':
         firstName = request.POST['firstName']
@@ -130,8 +130,8 @@ def booking(request, id):
 
         noOfRooms = requiredRooms
         request.session['no_of_rooms'] = noOfRooms
-        print("No of rooms = ", noOfRooms)
-        print("Working")
+        # print("No of rooms = ", noOfRooms)
+        # print("Working")
         # book = Booking(firstName=firstName, lastName=lastName, fromCity=fromCity, toCity=toCity, depatureDate=depatureDate, arrivalDate=arrivalDate, noOfRooms=noOfRooms, noOfAdults=noOfAdults, noOfChildren=noOfChildren, email=email,phoneNo=phoneNo, totalAmount=totalAmount)
 
         # book.save()
@@ -142,18 +142,18 @@ def booking(request, id):
 @login_required(login_url='/accounts/login')
 def receipt(request):
     first_name = request.session.get('fname')
-    print(first_name)
+    # print(first_name)
     last_name = request.session.get('lname')
-    print(last_name)
+    # print(last_name)
 
     tour_amount = int(request.session.get('total_amount')) #Per person
-    print(tour_amount)
+    # print(tour_amount)
     adults = int(request.session.get('no_of_adults'))
-    print(adults)
+    # print(adults)
     rooms = int(request.session.get('no_of_rooms'))
-    print(rooms)
+    # print(rooms)
     children = int(request.session.get('no_of_children'))
-    print(adults)
+    # print(adults)
     if rooms > 1:
         totalCost = tour_amount*adults + tour_amount*children/2 + rooms*tour_amount/4
     else:
@@ -161,9 +161,8 @@ def receipt(request):
         totalCost = tour_amount*adults + tour_amount*children/2
 
     request.session['total_amount'] =str(totalCost)
-    print("Hello")
 
-    print(totalCost)
+    # print(totalCost)
     request.session['total_amount'] = tour_amount
 
     today = date.today()
@@ -181,10 +180,10 @@ def search(request):
     # budget = request.GET['budget']
     price = Destination.objects.all()
     # print(price.price)
-    print(query)
+    # print(query)
     # print("Price = ", budget)
     dests = Destination.objects.filter(name__icontains = query)
-    print(dests)
+    # print(dests)
     # dests = Destination.objects.filter(price__lt = budget)
     # print(dests)
 
@@ -224,9 +223,9 @@ def confirm_booking(request):
         msg.content_subtype = "html"  # Main content is now text/html
         msg.send()
 
-        print("Mail successfully sent")
+        # print("Mail successfully sent")
 
-        print("User Added")
+        # print("User Added")
 
         return redirect('/')
     else:

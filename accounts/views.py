@@ -65,9 +65,9 @@ def register(request):
                 user.is_active = False
                 user.save()
                 a = request.user
-                print(a)
+                # print(a)
                 request.session['user']=user.username
-                print(user)
+                # print(user)
                 # path_to_view
                 # - getting domain we are on
                 # - relative url to verification
@@ -92,9 +92,9 @@ def register(request):
                 msg.send(fail_silently=False)
                 messages.success(request, 'Account Successfully Created.')
 
-                print("Mail successfully sent")
+                # print("Mail successfully sent")
 
-                print("User Added")
+                # print("User Added")
 
                 return render(request, 'registration_confirmation.html')
         else:
@@ -137,7 +137,6 @@ def logout(request):
 
 class VerificationView(View):
     def get(self, request, uidb64, token):
-        print("Hello")
         uid = force_text(urlsafe_base64_decode(uidb64))
         user = User.objects.get(pk=uid)
         user.is_active = True
